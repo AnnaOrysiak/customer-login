@@ -29,10 +29,11 @@ const SubmitButton = (props) => {
         }
         )
         .then(data => {
-          console.log(data);
-          handleSubmitForm();
+          handleSubmitForm("success");
+
         })
         .catch(err => {
+          handleSubmitForm("error");
           return err;
         })
     )

@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
+import { NotificationContainer } from 'react-notifications';
 import LoginForm from "./components/LoginForm";
-import Notifications from "./components/Notifications";
+import createNotifications from "./components/Notifications";
+import 'react-notifications/lib/notifications.css';
 
 class App extends Component {
+
   state = {
     formSend: false,
-    statusOK: false,
   }
 
-  handleSubmitForm = () => {
-    this.setState({ formSend: true });
+  handleSubmitForm = (messageType) => {
+
+    const newNotification = createNotifications(messageType);
+    newNotification(messageType);
+
+    this.setState({
+      formSend: true,
+    });
   }
 
   render() {
+
     return (
       <>
         <LoginForm handleSubmitForm={this.handleSubmitForm} />
-        {this.state.formSend && <Notifications />}
+        <NotificationContainer />
       </>
     );
   }
