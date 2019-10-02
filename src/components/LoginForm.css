@@ -1,0 +1,67 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #ffffff;
+  width: 100vw;
+  max-width: 550px;
+  min-height: 200px;
+  text-align: center;
+}
+
+.form__title {
+  padding: 50px 20px;
+  width: 100%;
+  background-color: #39557C;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  font-weight: 300;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.form__field {
+  position: relative;
+  padding: 40px 0;
+}
+
+.input-label {
+  padding: 5px 20px;
+  font-size: 2rem;
+}
+
+.form__input {
+  padding: 10px 5px;
+  font-size: 1rem;
+  border: none;
+  color: #A5AAC7;
+}
+
+.form__input[type="password"] {
+  letter-spacing: 2px;
+}
+
+.form__alert {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  color: darkred;
+  font-size: .9rem;
+}
+
+.form__footer {
+  padding: 20px;
+}
