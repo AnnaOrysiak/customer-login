@@ -16,6 +16,11 @@ body {
 
 a {
   color: #A5AAC7;
+  transition: color .3s ease;
+}
+
+a:hover {
+  color: #39669d;
 }
 
 hr {

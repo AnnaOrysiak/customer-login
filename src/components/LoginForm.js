@@ -17,6 +17,9 @@ const LoginSchema = Yup.object().shape({
 
 
 const LoginForm = (props) => {
+
+  const { formSend, handleStatusForm } = props;
+
   return (
 
     <div className="form">
@@ -30,11 +33,9 @@ const LoginForm = (props) => {
 
         validationSchema={LoginSchema}
         onSubmit={values => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            // setSubmitting(false);
-          }, 400);
-          console.log(values);
+          // Console.log left on purpose
+          // Preview of original inputs values
+          console.log("Original values: ", values);
         }}
       >
 
@@ -47,7 +48,7 @@ const LoginForm = (props) => {
                 <i className="fa fa-user" aria-hidden="true"></i>
               </label>
 
-              <Field type="email" name="email" className="form__input" placeholder="Email" required />
+              <Field type="email" name="email" className="form__input" placeholder="Email"  />
               {errors.email && touched.email && <div className="form__alert">{errors.email}</div>}
 
             </div>
@@ -59,19 +60,26 @@ const LoginForm = (props) => {
                 <i className="fa fa-lock" aria-hidden="true"></i>
               </label>
 
-              <Field type="password" name="password" className="form__input" placeholder="*********" maxLength="32" required />
+              <Field type="password" name="password" className="form__input form__input--password" placeholder="*********" maxLength="32" />
               {errors.password && touched.password && <div className="form__alert">{errors.password}</div>}
 
             </div>
 
-            <SubmitButton handleSubmitForm={props.handleSubmitForm} />
+            <SubmitButton
+              formSend={formSend}
+              handleStatusForm={handleStatusForm}
+              validated={!errors.email && touched.email && !errors.password && touched.password}
+            />
 
             <div className="form__footer">
               <p>Forgot Password? <a href="http://">Click Here</a></p>
             </div>
+
           </Form>
 
-        )}
+
+        )
+        }
 
       </Formik>
 

@@ -6,7 +6,7 @@ const createNotification = (type) => {
   return () => {
     switch (type) {
       case 'info':
-        NotificationManager.info('Info message');
+        NotificationManager.info('Your are already logged in');
         break;
       case "success":
         NotificationManager.success('Login Successful');

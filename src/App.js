@@ -7,16 +7,16 @@ import 'react-notifications/lib/notifications.css';
 class App extends Component {
 
   state = {
-    formSend: false,
+    formSend: false
   }
 
-  handleSubmitForm = (messageType) => {
+  handleStatusForm = (messageType) => {
 
     const newNotification = createNotifications(messageType);
     newNotification(messageType);
 
     this.setState({
-      formSend: true,
+      formSend: true
     });
   }
 
@@ -24,7 +24,11 @@ class App extends Component {
 
     return (
       <>
-        <LoginForm handleSubmitForm={this.handleSubmitForm} />
+        <LoginForm
+          formSend={this.state.formSend}
+          handleStatusForm={this.handleStatusForm}
+        />
+
         <NotificationContainer />
       </>
     );

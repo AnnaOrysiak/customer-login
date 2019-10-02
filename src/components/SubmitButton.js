@@ -3,17 +3,21 @@ import "./SubmitButton.css";
 
 const SubmitButton = (props) => {
 
-  const { handleSubmitForm } = props;
+  const { formSend, handleStatusForm, validated } = props;
 
   const formTestPass = {
     email: "eve.holt@reqres.in",
     password: "cityslicka"
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
 
-    (
+    if (formSend) {
+
+      handleStatusForm("info")
+
+    } else {
+
       fetch("https://reqres.in/api/login", {
         method: "post",
         headers: {
@@ -29,14 +33,19 @@ const SubmitButton = (props) => {
         }
         )
         .then(data => {
-          handleSubmitForm("success");
+          if (validated) {
+            handleStatusForm("success");
 
+            // Console log left on purpose
+            // Preview of receiving data
+            console.log(data);
+          }
         })
         .catch(err => {
-          handleSubmitForm("error");
+          handleStatusForm("error");
           return err;
         })
-    )
+    }
   }
 
   return (
@@ -44,6 +53,7 @@ const SubmitButton = (props) => {
       Login
       </button>
   );
+
 }
 
 export default SubmitButton;
