@@ -16,7 +16,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   return (
 
     <div className="form">
@@ -44,7 +44,7 @@ const LoginForm = () => {
 
             <div className="form__field">
               <label htmlFor="login" className="input-label">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i className="fa fa-user" aria-hidden="true"></i>
               </label>
 
               <Field type="email" name="email" className="form__input" placeholder="Email" required />
@@ -56,7 +56,7 @@ const LoginForm = () => {
 
             <div className="form__field">
               <label htmlFor="password" className="input-label">
-                <i class="fa fa-lock" aria-hidden="true"></i>
+                <i className="fa fa-lock" aria-hidden="true"></i>
               </label>
 
               <Field type="password" name="password" className="form__input" placeholder="*********" maxLength="32" required />
@@ -64,7 +64,7 @@ const LoginForm = () => {
 
             </div>
 
-            <SubmitButton />
+            <SubmitButton handleSubmitForm={props.handleSubmitForm} />
 
             <div className="form__footer">
               <p>Forgot Password? <a href="http://">Click Here</a></p>

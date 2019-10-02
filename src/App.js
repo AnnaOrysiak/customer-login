@@ -3,14 +3,20 @@ import LoginForm from "./components/LoginForm";
 import Notifications from "./components/Notifications";
 
 class App extends Component {
-  state = {}
+  state = {
+    formSend: false,
+    statusOK: false,
+  }
 
+  handleSubmitForm = () => {
+    this.setState({ formSend: true });
+  }
 
   render() {
     return (
       <>
-        <LoginForm />
-        {/* <Notifications /> */}
+        <LoginForm handleSubmitForm={this.handleSubmitForm} />
+        {this.state.formSend && <Notifications />}
       </>
     );
   }
