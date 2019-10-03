@@ -8,7 +8,7 @@
   letter-spacing: 2px;
   border: none;
   cursor: pointer;
-  transition: .3s ease-in;
+  transition: .2s ease-in;
 }
 
 .form__btn:hover {
@@ -34,7 +34,7 @@
     height: 25px;
     background-color: #263A53;
     z-index: -1;
-    transition: .3s ease-in;
+    transition: .2s ease-in;
   }
 
   .form__btn::before {

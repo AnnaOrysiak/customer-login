@@ -7,8 +7,8 @@ import "./LoginForm.css";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
-    .min(8, 'Password too Short!')
-    .max(32, 'Password too Long!')
+    .min(8, 'Too short! Password should be between 8 and 32 characters')
+    .max(32, 'Too long! Password should be between 8 and 32 characters')
     .required('Required'),
   email: Yup.string()
     .email('Invalid email')
@@ -44,11 +44,11 @@ const LoginForm = (props) => {
           <Form className="login-form">
 
             <div className="form__field">
-              <label htmlFor="login" className="input-label">
+              <label htmlFor="login" className={`input-label${errors.email && touched.email ? " invalid" : ""}`}>
                 <i className="fa fa-user" aria-hidden="true"></i>
               </label>
 
-              <Field type="email" name="email" className="form__input" placeholder="Email"  />
+              <Field type="email" name="email" className="form__input" placeholder="Email" />
               {errors.email && touched.email && <div className="form__alert">{errors.email}</div>}
 
             </div>
@@ -56,7 +56,7 @@ const LoginForm = (props) => {
             <hr />
 
             <div className="form__field">
-              <label htmlFor="password" className="input-label">
+              <label htmlFor="password" className={`input-label${errors.password && touched.password ? " invalid" : ""}`}>
                 <i className="fa fa-lock" aria-hidden="true"></i>
               </label>
 

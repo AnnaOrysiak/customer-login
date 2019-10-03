@@ -9,13 +9,13 @@ const createNotification = (type) => {
         NotificationManager.info('Your are already logged in');
         break;
       case "success":
-        NotificationManager.success('Login Successful');
+        NotificationManager.success('Login successful');
         break;
       case 'warning':
         NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
         break;
       case 'error':
-        NotificationManager.error('Login Failed', '', 5000);
+        NotificationManager.error('Login failed', '', 5000);
         break;
       default:
         break;
