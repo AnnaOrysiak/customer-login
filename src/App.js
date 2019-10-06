@@ -7,7 +7,8 @@ import 'react-notifications/lib/notifications.css';
 class App extends Component {
 
   state = {
-    formSend: false
+    formSend: false,
+    login: false
   }
 
   handleStatusForm = (messageType) => {
@@ -20,6 +21,12 @@ class App extends Component {
     });
   }
 
+  handleLogin = () => {
+    this.setState({
+      login: true
+    })
+  }
+
   render() {
 
     return (
@@ -27,6 +34,8 @@ class App extends Component {
         <LoginForm
           formSend={this.state.formSend}
           handleStatusForm={this.handleStatusForm}
+          login={this.state.login}
+          handleLogin={this.handleLogin}
         />
 
         <NotificationContainer />

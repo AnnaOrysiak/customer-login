@@ -3,7 +3,7 @@ import "./SubmitButton.css";
 
 const SubmitButton = (props) => {
 
-  const { formSend, handleStatusForm, validated } = props;
+  const { formSend, handleStatusForm, login, handleLogin, validated } = props;
 
   const formTestPass = {
     email: "eve.holt@reqres.in",
@@ -12,39 +12,42 @@ const SubmitButton = (props) => {
 
   const handleSubmit = () => {
 
-    if (formSend) {
+    if (formSend && login) {
 
       handleStatusForm("info")
 
     } else {
+      if (validated) {
 
-      fetch("https://reqres.in/api/login", {
-        method: "post",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        },
-        body: JSON.stringify(formTestPass)
-      })
-        .then(res => {
-          if (res.ok) {
-            return res.json();
+        fetch("https://reqres.in/api/login", {
+          method: "post",
+          // headers: {
+          //   "Content-type": "application/json; charset=UTF-8"
+          // },
+          body: JSON.stringify(formTestPass)
+        })
+          .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw Error("Ooops... Something went wrong.")
           }
-          throw Error("Ooops... Something went wrong.")
-        }
-        )
-        .then(data => {
-          if (validated) {
+          )
+          .then(data => {
+
             handleStatusForm("success");
 
             // Console log left on purpose
             // Preview of receiving data
             console.log(data);
-          }
-        })
-        .catch(err => {
-          handleStatusForm("error");
-          return err;
-        })
+            handleLogin();
+
+          })
+          .catch(err => {
+            handleStatusForm("error");
+            return err;
+          })
+      }
     }
   }
 

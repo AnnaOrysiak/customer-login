@@ -18,7 +18,7 @@ const LoginSchema = Yup.object().shape({
 
 const LoginForm = (props) => {
 
-  const { formSend, handleStatusForm } = props;
+  const { formSend, handleStatusForm, login, handleLogin } = props;
 
   return (
 
@@ -68,6 +68,8 @@ const LoginForm = (props) => {
             <SubmitButton
               formSend={formSend}
               handleStatusForm={handleStatusForm}
+              login={login}
+              handleLogin={handleLogin}
               validated={!errors.email && touched.email && !errors.password && touched.password}
             />
 
