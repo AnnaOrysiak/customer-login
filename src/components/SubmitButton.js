@@ -21,9 +21,9 @@ const SubmitButton = (props) => {
 
         fetch("https://reqres.in/api/login", {
           method: "post",
-          // headers: {
-          //   "Content-type": "application/json; charset=UTF-8"
-          // },
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          },
           body: JSON.stringify(formTestPass)
         })
           .then(res => {
