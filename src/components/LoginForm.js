@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import SubmitButton from "./SubmitButton";
 import "./LoginForm.css";
 
-
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, 'Too short! Password should be between 8 and 32 characters')
@@ -15,9 +14,7 @@ const LoginSchema = Yup.object().shape({
     .required('Required'),
 });
 
-
 const LoginForm = (props) => {
-
   const { formSend, handleStatusForm, login, handleLogin } = props;
 
   return (
@@ -35,34 +32,28 @@ const LoginForm = (props) => {
         onSubmit={values => {
           // Console.log left on purpose
           // Preview of original inputs values
-          console.log("Original values: ", values);
+          console.log(`Original values: 
+          email - ${values.email}
+          password - ${values.password}`);
         }}
       >
-
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
 
           <Form className="login-form">
-
             <div className="form__field">
-              <label htmlFor="login" className={`input-label${errors.email && touched.email ? " invalid" : ""}`}>
-                <i className="fa fa-user" aria-hidden="true"></i>
-              </label>
-
-              <Field type="email" name="email" className="form__input" placeholder="Email" />
+              <span className={`icon fa fa-user${errors.email && touched.email ? " invalid" : ""}`} aria-hidden="true"></span>
+              <Field type="email" name="email" className="form__input" required />
+              <label htmlFor="password" className={`input-label${values.email.length > 0 ? " touched" : ""}`}>Email</label>
               {errors.email && touched.email && <div className="form__alert">{errors.email}</div>}
-
             </div>
 
             <hr />
 
             <div className="form__field">
-              <label htmlFor="password" className={`input-label${errors.password && touched.password ? " invalid" : ""}`}>
-                <i className="fa fa-lock" aria-hidden="true"></i>
-              </label>
-
-              <Field type="password" name="password" className="form__input form__input--password" placeholder="*********" maxLength="32" />
+              <span className={`icon fa fa-lock${errors.password && touched.password ? " invalid" : ""}`} aria-hidden="true"></span>
+              <Field type="password" name="password" className="form__input form__input--password" maxLength="32" required />
+              <label htmlFor="password" className={`input-label${values.password.length > 0 ? " touched" : ""}`}>Password</label>
               {errors.password && touched.password && <div className="form__alert">{errors.password}</div>}
-
             </div>
 
             <SubmitButton
@@ -76,17 +67,11 @@ const LoginForm = (props) => {
             <div className="form__footer">
               <p>Forgot Password? <a href="http://">Click Here</a></p>
             </div>
-
           </Form>
-
-
         )
         }
-
       </Formik>
-
     </div>
-
   );
 }
 
